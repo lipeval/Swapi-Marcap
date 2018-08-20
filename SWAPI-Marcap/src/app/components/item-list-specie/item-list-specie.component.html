@@ -1,0 +1,137 @@
+<p-table [value]="loadData" [totalRecords]="totalRecords" [paginator]="true" [rows]="10" [loading]="loading" [lazy]="true"
+  (onLazyLoad)="loadDataAndConfigureTable($event)" [paginator]="true">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>
+        Name
+      </th>
+
+      <th style="width: 80px;">
+        Average height
+      </th>
+
+      <th style="width: 80px;">
+        Average lifespan
+      </th>
+
+      <th>
+        Classification
+      </th>
+
+      <th style="width: 80px;">
+        Designation
+      </th>
+
+      <th style="width: 80px;">
+        skin colors
+      </th>
+
+      <th style="width: 80px;">
+        eye colors
+      </th>
+
+      <th style="width: 80px;">
+        hair colors
+      </th>
+
+      <th>
+        Homeworld
+      </th>
+
+
+      <th>
+        Language
+      </th>
+
+      <th>
+        People
+      </th>
+
+      <th>
+        Film
+      </th>
+
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-item>
+    <tr>
+      <td class="main">
+
+        {{item.name}}
+
+      </td>
+      <td class="center">
+
+        {{item.average_height}}
+
+      </td>
+
+      <td class="center">
+
+        {{item.average_lifespan}}
+
+      </td>
+
+      <td class="center">
+
+        {{item.classification}}
+
+      </td>
+
+      <td class="center">
+
+        {{item.designation}}
+
+      </td>
+
+      <td class="center">
+
+        {{item.skin_colors}}
+
+      </td>
+
+      <td class="center">
+        {{item.eye_colors}}
+
+      </td>
+
+      <td class="center">
+        {{item.hair_colors}}
+
+      </td>
+
+      <td class="center">
+        {{item.homeworlObj?.name}}
+      </td>
+
+      <td class="center">
+        {{item.language}}
+      </td>
+
+      <td>
+
+        <ul>
+          <li *ngFor="let ss of item.peoplesObj">
+            <a class="pointer" (click)="displayModalPannel(ss,'people')">{{ss.name}}</a>
+          </li>
+        </ul>
+
+      </td>
+
+
+      <td>
+
+        <ul>
+          <li *ngFor="let ss of item.filmsObj">
+            <a class="pointer" (click)="displayModalPannel(ss,'film')">{{ss.title}}</a>
+          </li>
+        </ul>
+
+      </td>
+
+    </tr>
+  </ng-template>
+</p-table>
+
+
+<app-item-details (onChiudi)="resetModal($event)" [objecttype]="modalType" [modalItem]="modalItem" [displayModal]="displayModalDetail"></app-item-details>
